@@ -1,0 +1,17 @@
+<template>
+
+    <div class="card" style="width: 18rem;">
+        <img if.bind="!!productModel.Image" src="data:image/jpg;base64,${productModel.Image}" class="card-img-top" alt.bind="productModel.Name">
+        <img else src="./img.jpg" class="card-img-top" alt.bind="productModel.Name">
+        <div class="card-body">
+          <h5 class="card-title">${productModel.Name}</h5>
+          <p class="card-text">${productModel.Description}</p>
+          <p class="card-text">Price
+             <span class="badge text-bg-info">${productModel.Price} DH</span>
+            </p>
+            <button  click.delegate="delete()"  class="btn btn-outline-danger">Delete</button>
+        </div>
+      </div>
+
+ 
+</template>

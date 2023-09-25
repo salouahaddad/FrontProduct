@@ -1,0 +1,29 @@
+<template>
+    <require from="bootstrap/dist/css/bootstrap.min.css"></require>
+    <div class="h-100 d-inline-block" style="width: 100%;">
+
+        <div class="container mt-5 " >
+            <div class="card" >
+                <div class="card-header">
+                    <h1>Login</h1>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                         <label  class="form-label">Email </label>
+                         <input type="email" value.bind="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                     </div>
+                    <div class="mb-3">
+                        <label for="TextBox_pass" class="form-label">Password </label>
+                        <input type="password" id="inputPassword5" value.bind="password" class="form-control" aria-describedby="passwordHelpBlock">
+                    </div>
+                    
+                </div>
+                <div  class="card-footer">
+                   
+                  
+                    <button type="button" click.delegate="login()" class="btn btn-primary">Login</button>
+                </div>
+            </div>
+ </div>
+    </div>
+</template>

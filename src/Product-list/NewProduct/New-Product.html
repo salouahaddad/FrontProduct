@@ -1,0 +1,40 @@
+<template>
+    <require from="../../Converters/currency-format"></require>
+    <div class="card container ">
+        <div class="card-header">
+          New Product
+        </div>
+        <div class="card-body ">
+<!-- Name -->
+        <div class="mb-3">
+            <label for="FormControlName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="FormControlName" value.bind="productModel.Name" >
+        </div>
+        <!-- Description -->
+        <div class="mb-3">
+          <label for="FormControlTextareaDescription" class="form-label">Description</label>
+          <textarea class="form-control" id="FormControlTextareaDescription" rows="3" value.bind="productModel.Description"></textarea>
+        </div>
+     <!-- Price -->
+    <div class="mb-3">
+        <label for="FormControlName" class="form-label">Price</label>
+        <input type="text" class="form-control" id="FormControlName"  value.bind="productModel.Price | currencyFormat & updateTrigger:'blur'" >
+    </div>
+     <!-- Image -->
+     <div class="row">
+        <div class="mb-3 col">
+            <label for="formFileImage" class="form-label">Image</label>
+            <input class="form-control" type="file" change.delegate="getImage(event)" id="formFileImage">
+        </div>
+        <div class="col">
+            <img  style="width: 10rem; height: 10rem;" if.bind="!!productModel.Image" src="data:image/jpg;base64,${productModel.Image}" class="card-img-top" alt="product">
+        </div>
+       </div>
+    
+        </div>
+        <div class="card-footer text-body-secondary text-end">
+            <button type="button" class="btn btn-primary" click.delegate="Save()">Save</button>
+            <button type="button" class="btn btn-secondary" click.delegate="Cancel()">Cancel</button>
+        </div>
+      </div>
+</template>
