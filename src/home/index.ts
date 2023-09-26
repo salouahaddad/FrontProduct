@@ -18,11 +18,12 @@ export class Index {
     }
 
     login(){
-      //  this.ProductService.getUser(this.email,this.password).then(data=>{
-           
-            this.router.navigateToRoute('Product')
-    //}).catch(error=>
-          //  console.error(error));
+        this.ProductService.getUser(this.email,this.password).then(data=>{
+           if(data){
+            this.router.navigateToRoute('Product');
+           }
+    }).catch(error=>
+            console.error(error));
         
     }
 }

@@ -11,12 +11,27 @@ export class ProductService {
     
   }
 
-  getUser(email:string,password:string):Promise<any>{
-    return new Promise<any> (((resolve, reject)=>{
-      this.httpClient.fetch('http://localhost:5095/api/User/GetUser/email?email='+email+"/id?id="+password)
-      .then(data=>
-        resolve(Object.assign( data.json()))
-        ).catch(e=>reject(e));
+  getUser(email:string,password:string):Promise<boolean>{
+    debugger;
+    return new Promise<boolean> (((resolve, reject)=>{
+      this.httpClient.fetch('http://localhost:5095/api/User/GetUser/'+email+"/"+password,
+       {
+        method: 'post'
+     }).then(data=>{
+      if(data.ok){
+        data.json().then(data=>{
+          localStorage['jwtToken']=data.token;
+          resolve(true);
+        }
+          );
+      }else{
+        resolve(false);
+      }
+     
+      
+       
+
+     }).catch(e=>reject(e));
     } ))
   }
    getAllProduct():Promise<ProductModel[]> {
@@ -28,6 +43,7 @@ export class ProductService {
         headers:{
           'Content-Type': 'application/json',
       'Accept': 'application/json',
+      'Authorization': `Bearer ${localStorage['jwtToken']}`
         }
       }).then(data=>
       resolve(Object.assign( data.json()))
@@ -46,6 +62,7 @@ export class ProductService {
         headers:{
           'Content-Type': 'application/json',
       'Accept': 'application/json',
+      'Authorization': `Bearer ${localStorage['jwtToken']}`
         }
       })
     .then(() => {
@@ -64,6 +81,7 @@ export class ProductService {
         headers:{
           'Content-Type': 'application/json',
       'Accept': 'application/json',
+      'Authorization': `Bearer ${localStorage['jwtToken']}`
         }
       }).then(data => {
       resolve();
